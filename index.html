@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive testpoints and pinouts directory for electronic devices">
+    <title>Testpoints & Pinouts Directory</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="header-title">
+                    <svg class="header-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <circle cx="12" cy="12" r="6"></circle>
+                        <circle cx="12" cy="12" r="2"></circle>
+                    </svg>
+                    Testpoints & Pinouts Directory
+                </h1>
+                <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Search and Filters Section -->
+            <section class="controls-section" aria-label="Search and filter controls">
+                <!-- Search Bar -->
+                <div class="search-wrapper">
+                    <label for="searchInput" class="visually-hidden">Search pinouts</label>
+                    <div class="search-container">
+                        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                        <input 
+                            type="search" 
+                            id="searchInput" 
+                            class="search-input" 
+                            placeholder="Search by device name, model, or testpoint..."
+                            aria-describedby="searchHelp"
+                        >
+                        <button id="clearSearch" class="clear-search" aria-label="Clear search" title="Clear search" style="display: none;">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="searchHelp" class="search-help">
+                        <span id="resultCount" class="result-count" role="status" aria-live="polite"></span>
+                    </div>
+                </div>
+
+                <!-- Brand Filters -->
+                <div class="filters-wrapper">
+                    <h2 class="filters-title">Filter by Brand</h2>
+                    <div id="brandFilters" class="brand-filters" role="group" aria-label="Brand filters">
+                        <!-- Brand filter cards will be dynamically inserted here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Indicator for Multi-Brand Loading -->
+            <div id="loadingProgress" class="loading-progress" role="status" aria-live="polite" style="display: none;">
+                <div class="progress-bar">
+                    <div id="progressFill" class="progress-fill"></div>
+                </div>
+                <p id="progressText" class="progress-text">Loading brands...</p>
+            </div>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section" aria-label="Pinouts results">
+                <!-- Content will be dynamically inserted here -->
+            </section>
+
+            <!-- No Results State -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <svg class="no-results-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                    <line x1="9" y1="9" x2="13" y2="13"></line>
+                    <line x1="13" y1="9" x2="9" y2="13"></line>
+                </svg>
+                <h3 class="no-results-title">No results found</h3>
+                <p class="no-results-text">Try adjusting your search terms or filters to find what you're looking for.</p>
+                <button id="clearFiltersBtn" class="btn btn-primary">Clear all filters</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox for Image Viewing -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" style="display: none;">
+        <div class="lightbox-overlay" role="button" tabindex="0" aria-label="Close lightbox"></div>
+        <div class="lightbox-content">
+            <button class="lightbox-close" aria-label="Close image viewer" title="Close (Esc)">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="lightbox-image-container">
+                <img id="lightboxImage" src="" alt="" class="lightbox-image">
+                <div class="lightbox-zoom-controls">
+                    <button class="zoom-btn" id="zoomOut" aria-label="Zoom out" title="Zoom out">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="zoom-btn" id="zoomReset" aria-label="Reset zoom" title="Reset zoom">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                    <button class="zoom-btn" id="zoomIn" aria-label="Zoom in" title="Zoom in">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="11" y1="8" x2="11" y2="14"></line>
+                            <line x1="8" y1="11" x2="14" y2="11"></line>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; 2024 Testpoints & Pinouts Directory. Community-driven electronics resource.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
